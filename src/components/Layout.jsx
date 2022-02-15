@@ -1,11 +1,24 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React, { useEffect, useRef } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 import {BiSearchAlt} from "react-icons/bi"
 import {BsBookmarkFill} from "react-icons/bs"
 function Layout({ children }) {
+  let navigate = useNavigate()
+  const inputField = useRef()
     const setClassName = (state) => {
        return state ? "categories-content_btn__active categories-content_btn__structure" : "categories-content_btn__structure categories-content_btn"
     }
+
+useEffect(() => {
+
+  inputField.current.addEventListener('keypress',function(e){
+    if(e.key === "Enter") {
+      navigate(`/search/${inputField.current.value}`, {state: inputField.current.value})
+      inputField.current.value = ""
+    } 
+  })
+}, [])
+
   return (
     <>
       <div className="layout">
@@ -64,7 +77,8 @@ function Layout({ children }) {
           <div className="content-bar">
               <div className="search-bar">
                   <BiSearchAlt className="search-bar_icon"/>
-                  <input type="text" placeholder="enter dish....." className="search-bar_inputField"/>
+                  {/* /search/id */}
+                  <input ref={inputField} type="text" placeholder="enter dish....." className="search-bar_inputField"/>
               </div>
               <div className="bookmark-bar">
                   <span className="bookmark-bar_text">Bookmarks</span>
