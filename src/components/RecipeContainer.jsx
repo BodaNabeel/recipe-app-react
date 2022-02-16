@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import {  useParams } from "react-router-dom";
 
 export default function RecipeContainer() {
   //   API URL: https://forkify-api.herokuapp.com/api/v2/recipes/
@@ -16,30 +16,36 @@ export default function RecipeContainer() {
 
   // fetching API when dishName is changed
   useEffect(() => {
-    setRecipeData("");
     setState("inactive");
     fetch(`${API_URL}${dishName}`)
       .then((res) => res.json())
-      .then((data) => setRecipeData(data));
+      .then((data) => setRecipeData(data.recipes));
   }, [dishName]);
 
   // setting a timer to show a loading animation for 5secs
   useEffect(() => {
-    const timer = setTimeout(() => {
+    const timer = setInterval(() => {
       return setState("active");
     }, 3000);
     return () => clearTimeout(timer);
-  }, [recipeData]);
+  }, [dishName]);
 
   // function used to create the data template
   const displayUI = (data) => {
+    // setRecipeData("");
     if (data !== "" && state === "active") {
-      return <h1> Working...!</h1>;
+      return data.map((el) => {
+        return (
+          <>
+            <h1>{el.title}</h1>
+            <img src={el.image_url} alt="" />
+          </>
+        );
+      });
     } else {
       return <h1> NOT WORKING</h1>;
     }
   };
-  
+
   return <div>{displayUI(recipeData)}</div>;
 }
-
