@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
+import { SiCodechef } from "react-icons/si";
 export default function RecipeContainer() {
   //   API URL: https://forkify-api.herokuapp.com/api/v2/recipes/
   // search by name: AJAX(`${API_URL}?search=${query}&key=${KEY}`);
@@ -38,10 +39,18 @@ export default function RecipeContainer() {
         <div className="card-container">
           {data.map((el) => {
             return (
-              <div key={uuidv4()} className="card">
-                <p className="card-title">{el.title}</p>
-                <img className="card-img" src={el.image_url} alt="" />
-              </div>
+              <span key={uuidv4()} className="card">
+                <img
+                  src={el.image_url}
+                  alt={`img of ${el.title}`}
+                  className="card-img"
+                />
+                <div className="card-content">
+                  <p className="cook-name"><SiCodechef/>{el.publisher}</p>
+                  <p className="dish-name">{el.title}</p>
+                </div>
+                
+              </span>
             );
           })}
         </div>
