@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import {  useParams } from "react-router-dom";
-
+import { useParams } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
 export default function RecipeContainer() {
   //   API URL: https://forkify-api.herokuapp.com/api/v2/recipes/
   // search by name: AJAX(`${API_URL}?search=${query}&key=${KEY}`);
@@ -34,18 +34,22 @@ export default function RecipeContainer() {
   const displayUI = (data) => {
     // setRecipeData("");
     if (data !== "" && state === "active") {
-      return data.map((el) => {
-        return (
-          <div className="card">
-            <p className="card-title">{el.title}</p>
-            <img className="card-img" src={el.image_url} alt="" />
-          </div>
-        );
-      });
+      return (
+        <div className="card-container">
+          {data.map((el) => {
+            return (
+              <div key={uuidv4()} className="card">
+                <p className="card-title">{el.title}</p>
+                <img className="card-img" src={el.image_url} alt="" />
+              </div>
+            );
+          })}
+        </div>
+      );
     } else {
       return <h1> NOT WORKING</h1>;
     }
   };
 
-  return <div className="card-container">{displayUI(recipeData)}</div>;
+  return displayUI(recipeData);
 }
