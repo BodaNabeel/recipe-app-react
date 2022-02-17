@@ -89,7 +89,7 @@ function Layout({ children }) {
           </div>
         </div>
         <div className="content">
-          <div className="content-bar">
+         
             <div className="search-bar">
               <BiSearchAlt className="search-bar_icon" />
               {/* /search/id */}
@@ -105,8 +105,8 @@ function Layout({ children }) {
               <BsBookmarkFill />
             </div>
           </div>
+        
           <div className="content-main">{children}</div>
-        </div>
       </div>
       {/* {children} */}
     </>

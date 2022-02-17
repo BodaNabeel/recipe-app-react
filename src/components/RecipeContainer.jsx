@@ -36,10 +36,10 @@ export default function RecipeContainer() {
     if (data !== "" && state === "active") {
       return data.map((el) => {
         return (
-          <>
-            <h1>{el.title}</h1>
-            <img src={el.image_url} alt="" />
-          </>
+          <div className="card">
+            <p className="card-title">{el.title}</p>
+            <img className="card-img" src={el.image_url} alt="" />
+          </div>
         );
       });
     } else {
@@ -47,5 +47,5 @@ export default function RecipeContainer() {
     }
   };
 
-  return <div>{displayUI(recipeData)}</div>;
+  return <div className="card-container">{displayUI(recipeData)}</div>;
 }
