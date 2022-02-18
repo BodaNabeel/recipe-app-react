@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import { SiCodechef } from "react-icons/si";
+import {FaLongArrowAltRight} from "react-icons/fa"
+import {FaLongArrowAltLeft} from "react-icons/fa"
 export default function RecipeContainer() {
   //   API URL: https://forkify-api.herokuapp.com/api/v2/recipes/
   // search by name: AJAX(`${API_URL}?search=${query}&key=${KEY}`);
@@ -16,6 +18,14 @@ export default function RecipeContainer() {
   const [state, setState] = useState("inactive");
 
   // fetching API when dishName is changed
+  const ref = useRef()
+  const scroll = (scrollOffset) => {
+    ref.current.scrollLeft += scrollOffset;
+  };
+  // console.log()
+//  scrollLeft.current.onclick = function () {
+//     document.getElementById('container').scrollLeft += 20;
+//   };
   useEffect(() => {
     setState("inactive");
     fetch(`${API_URL}${dishName}`)
@@ -31,28 +41,37 @@ export default function RecipeContainer() {
     return () => clearTimeout(timer);
   }, [dishName]);
 
+
   // function used to create the data template
   const displayUI = (data) => {
     // setRecipeData("");
     if (data !== "" && state === "active") {
       return (
-        <div className="card-container">
-          {data.map((el) => {
-            return (
-              <span key={uuidv4()} className="card">
-                <img
-                  src={el.image_url}
-                  alt={`img of ${el.title}`}
-                  className="card-img"
-                />
-                <div className="card-content">
-                  <p className="cook-name"><SiCodechef/>{el.publisher}</p>
-                  <p className="dish-name">{el.title}</p>
+        <div className="card-wrap">
+          <div className="card-container" ref={ref}>
+            {data.map((el) => {
+              return (
+                <div key={uuidv4()} className="card">
+                  <img
+                    src={el.image_url}
+                    alt={`img of ${el.title}`}
+                    className="card-img"
+                  />
+                  <div className="card-content">
+                    <p className="cook-name">
+                      <SiCodechef />
+                      {el.publisher}
+                    </p>
+                    <p className="dish-name">{el.title}</p>
+                  </div>
                 </div>
-                
-              </span>
-            );
-          })}
+              );
+            })}
+          </div>
+          <div className="scroll-btn-container">
+            <button onClick={() => scroll(-1000)} className="scroll-btn"><FaLongArrowAltLeft/></button>
+            <button  onClick={() => scroll(+1000)} className="scroll-btn"><FaLongArrowAltRight/></button>
+          </div>
         </div>
       );
     } else {
