@@ -177,11 +177,34 @@ body {
 }
 .card-img {
   height: 65%;
-  width: 334px;
+  width: 280px;
   border-radius: 15px;
+}
+.card-content {
+margin: 0 10%
 }
 .card-title {
   font-size: 8px;
+}
+.cook-detail {
+  background-color: #A584EC;
+  color: var(--white);
+  /* display: inline; */
+  width: max-content;
+  padding: 5px;
+  border-radius: 10px;
+
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+}
+.cook-icon {
+  margin-right: 10px;
+  font-size: 20px;
+}
+.dish-name {
+  font-size: 18px;
+  font-weight: 700;
 }
 .scroll-btn-container {
   align-self: flex-end;
