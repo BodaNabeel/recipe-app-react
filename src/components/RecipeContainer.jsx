@@ -17,17 +17,21 @@ export default function RecipeContainer() {
   const [recipeData, setRecipeData] = useState("");
   const [state, setState] = useState("inactive");
   const [scrollX, setScrollX] = useState(0);
-  const [scrollWidthX, setScrollWidthX] = useState(0);
+  const [scrollWidthX, setScrollWidthX] = useState();
 
   const ref = useRef();
 
   const scroll = (scrollOffset) => {
     ref.current.scrollLeft += scrollOffset;
-    setScrollX(scrollX + scrollOffset);
-    setScrollWidthX(ref.current.scrollWidth - 224);
+    setScrollWidthX(ref.current.scrollWidth - ref.current.offsetWidth);
+    setScrollX(ref.current.scrollLeft + scrollOffset);
+    console.log(ref.current.scrollLeft);
+  };
+  const scrollCheck = () => {
+    setScrollWidthX(ref.current.scrollWidth - ref.current.offsetWidth);
+    setScrollX(ref.current.scrollLeft);
   };
 
-  // fetching API
   useEffect(() => {
     setState("inactive");
     fetch(`${API_URL}${dishName}`)
@@ -48,7 +52,7 @@ export default function RecipeContainer() {
     if (data !== "" && state === "active") {
       return (
         <div className="card-wrap">
-          <div className="card-container" ref={ref}>
+          <div className="card-container" onScroll={scrollCheck} ref={ref}>
             {data.map((el) => {
               return (
                 <div key={uuidv4()} className="card">
@@ -73,7 +77,7 @@ export default function RecipeContainer() {
           <div className="scroll-btn-container">
             {/* <button onClick={() => scroll(-1000)} className="scroll-btn"> */}
             <button
-              disabled={scrollX === 0 ? true : false}
+              disabled={scrollX <= 0 ? true : false}
               onClick={() => scroll(-1000)}
               className={
                 scrollX === 0
@@ -85,7 +89,7 @@ export default function RecipeContainer() {
             </button>
             <button
               onClick={() => scroll(+1000)}
-              disabled={scrollX > scrollWidthX ? true : false}
+              disabled={scrollX >= scrollWidthX ? true : false}
               className={
                 scrollX >= scrollWidthX
                   ? "scroll-btn scroll-btn_passive"
