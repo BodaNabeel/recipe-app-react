@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
-import {FaLongArrowAltRight} from "react-icons/fa"
-import {FaLongArrowAltLeft} from "react-icons/fa"
-import {GiChefToque} from "react-icons/gi"
+import { MdKeyboardArrowRight } from "react-icons/md";
+import { MdKeyboardArrowLeft } from "react-icons/md";
+import { GiChefToque } from "react-icons/gi";
 export default function RecipeContainer() {
   //   API URL: https://forkify-api.herokuapp.com/api/v2/recipes/
   // search by name: AJAX(`${API_URL}?search=${query}&key=${KEY}`);
@@ -16,12 +16,18 @@ export default function RecipeContainer() {
   const API_URL = "https://forkify-api.herokuapp.com/api/search?q=";
   const [recipeData, setRecipeData] = useState("");
   const [state, setState] = useState("inactive");
+  const [scrollX, setScrollX] = useState(0);
+  const [scrollWidthX, setScrollWidthX] = useState(0);
 
-  // fetching API when dishName is changed
-  const ref = useRef()
+  const ref = useRef();
+
   const scroll = (scrollOffset) => {
     ref.current.scrollLeft += scrollOffset;
+    setScrollX(scrollX + scrollOffset);
+    setScrollWidthX(ref.current.scrollWidth - 224);
   };
+
+  // fetching API
   useEffect(() => {
     setState("inactive");
     fetch(`${API_URL}${dishName}`)
@@ -36,7 +42,6 @@ export default function RecipeContainer() {
     }, 3000);
     return () => clearTimeout(timer);
   }, [dishName]);
-
 
   // function used to create the data template
   const displayUI = (data) => {
@@ -55,7 +60,7 @@ export default function RecipeContainer() {
                   <div className="card-content">
                     <p className="cook-detail">
                       <span className="cook-icon">
-                        <GiChefToque/>
+                        <GiChefToque />
                       </span>
                       {el.publisher}
                     </p>
@@ -66,8 +71,29 @@ export default function RecipeContainer() {
             })}
           </div>
           <div className="scroll-btn-container">
-            <button onClick={() => scroll(-1000)} className="scroll-btn"><FaLongArrowAltLeft/></button>
-            <button  onClick={() => scroll(+1000)} className="scroll-btn"><FaLongArrowAltRight/></button>
+            {/* <button onClick={() => scroll(-1000)} className="scroll-btn"> */}
+            <button
+              disabled={scrollX === 0 ? true : false}
+              onClick={() => scroll(-1000)}
+              className={
+                scrollX === 0
+                  ? "scroll-btn scroll-btn_passive"
+                  : "scroll-btn scroll-btn_active"
+              }
+            >
+              <MdKeyboardArrowLeft />
+            </button>
+            <button
+              onClick={() => scroll(+1000)}
+              disabled={scrollX > scrollWidthX ? true : false}
+              className={
+                scrollX >= scrollWidthX
+                  ? "scroll-btn scroll-btn_passive"
+                  : "scroll-btn scroll-btn_active"
+              }
+            >
+              <MdKeyboardArrowRight />
+            </button>
           </div>
         </div>
       );
