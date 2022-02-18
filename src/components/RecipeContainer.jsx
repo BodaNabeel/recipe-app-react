@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
-import { SiCodechef } from "react-icons/si";
 import {FaLongArrowAltRight} from "react-icons/fa"
 import {FaLongArrowAltLeft} from "react-icons/fa"
+import {GiChefToque} from "react-icons/gi"
 export default function RecipeContainer() {
   //   API URL: https://forkify-api.herokuapp.com/api/v2/recipes/
   // search by name: AJAX(`${API_URL}?search=${query}&key=${KEY}`);
@@ -22,10 +22,6 @@ export default function RecipeContainer() {
   const scroll = (scrollOffset) => {
     ref.current.scrollLeft += scrollOffset;
   };
-  // console.log()
-//  scrollLeft.current.onclick = function () {
-//     document.getElementById('container').scrollLeft += 20;
-//   };
   useEffect(() => {
     setState("inactive");
     fetch(`${API_URL}${dishName}`)
@@ -44,7 +40,6 @@ export default function RecipeContainer() {
 
   // function used to create the data template
   const displayUI = (data) => {
-    // setRecipeData("");
     if (data !== "" && state === "active") {
       return (
         <div className="card-wrap">
@@ -58,8 +53,10 @@ export default function RecipeContainer() {
                     className="card-img"
                   />
                   <div className="card-content">
-                    <p className="cook-name">
-                      <SiCodechef />
+                    <p className="cook-detail">
+                      <span className="cook-icon">
+                        <GiChefToque/>
+                      </span>
                       {el.publisher}
                     </p>
                     <p className="dish-name">{el.title}</p>
