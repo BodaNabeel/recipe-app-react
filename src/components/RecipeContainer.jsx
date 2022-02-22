@@ -12,7 +12,6 @@ export default function RecipeContainer() {
   // key: 36cdcc1e-f278-45a8-a77a-6af5bd74bf2e
   // id: 5ed6604591c37cdc054bcd09
   // sample  https://forkify-api.herokuapp.com/api/v2/recipes/search=pizza&key=36cdcc1e-f278-45a8-a77a-6af5bd74bf2e
-  const defaultValue__ = 0;
   const params = useParams();
   const dishName = params.id;
   const API_URL = "https://forkify-api.herokuapp.com/api/search?q=";
@@ -24,13 +23,14 @@ export default function RecipeContainer() {
   const ref = useRef();
 
   const scroll = (scrollOffset) => {
+    console.log(scrollX)
     ref.current.scrollLeft += scrollOffset;
     setScrollWidthX(ref.current.scrollWidth - ref.current.offsetWidth);
-    setScrollX(ref.current.scrollLeft + scrollOffset);
+    setScrollX(Math.ceil(ref.current.scrollLeft));
   };
   const scrollCheck = () => {
     setScrollWidthX(ref.current.scrollWidth - ref.current.offsetWidth);
-    setScrollX(ref.current.scrollLeft);
+    setScrollX(Math.ceil(ref.current.scrollLeft));
   };
 
   useEffect(() => {
@@ -58,7 +58,7 @@ export default function RecipeContainer() {
     if (data.recipes && state === "active") {
       return (
         <div className="card-wrap">
-          <h1 className="card-wrap-heading">select a dish</h1>
+          <p className="card-wrap-heading">select a dish</p>
           <div className="card-container" onScroll={scrollCheck} ref={ref}>
             {data.recipes.map((el) => {
               return (
