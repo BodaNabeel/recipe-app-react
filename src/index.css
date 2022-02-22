@@ -150,6 +150,11 @@ body {
   height: 100%;
   margin: 0 5vw;
 }
+.card-wrap-heading {
+  text-align: center;
+  color: var(--light-green)
+}
+
 .card-container {
   display: flex;
   align-items: center;
@@ -186,6 +191,7 @@ body {
 }
 .card-content {
   margin: 0 10%;
+  height: 35%;
 }
 .card-title {
   font-size: 8px;
@@ -197,7 +203,6 @@ body {
   width: max-content;
   padding: 5px;
   border-radius: 10px;
-
   display: flex;
   align-items: center;
   /* justify-content: center; */
