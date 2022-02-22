@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { MdKeyboardArrowLeft } from "react-icons/md";
 import { GiChefToque } from "react-icons/gi";
+import SyncLoader from "react-spinners/SyncLoader";
 export default function RecipeContainer() {
   //   API URL: https://forkify-api.herokuapp.com/api/v2/recipes/
   // search by name: AJAX(`${API_URL}?search=${query}&key=${KEY}`);
@@ -102,7 +103,11 @@ export default function RecipeContainer() {
         </div>
       );
     } else {
-      return <h1> NOT WORKING</h1>;
+      return (
+        <div className="loader">
+          <SyncLoader color="#48bf84" />;
+        </div>
+      );
     }
   };
 

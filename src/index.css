@@ -233,3 +233,10 @@ body {
   background-color: var(--light-green);
   color: var(--white);
 }
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%
+  /* margin-top: 150px; */
+}
