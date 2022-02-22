@@ -26,7 +26,6 @@ export default function RecipeContainer() {
     ref.current.scrollLeft += scrollOffset;
     setScrollWidthX(ref.current.scrollWidth - ref.current.offsetWidth);
     setScrollX(ref.current.scrollLeft + scrollOffset);
-    console.log(ref.current.scrollLeft);
   };
   const scrollCheck = () => {
     setScrollWidthX(ref.current.scrollWidth - ref.current.offsetWidth);
@@ -37,7 +36,7 @@ export default function RecipeContainer() {
     setState("inactive");
     fetch(`${API_URL}${dishName}`)
       .then((res) => res.json())
-      .then((data) => setRecipeData(data.recipes));
+      .then((data) => setRecipeData(data));
   }, [dishName]);
 
   // setting a timer to show a loading animation for 5secs
@@ -50,11 +49,11 @@ export default function RecipeContainer() {
 
   // function used to create the data template
   const displayUI = (data) => {
-    if (data !== "" && state === "active") {
+    if (data.recipes && state === "active") {
       return (
         <div className="card-wrap">
           <div className="card-container" onScroll={scrollCheck} ref={ref}>
-            {data.map((el) => {
+            {data.recipes.map((el) => {
               return (
                 <div key={uuidv4()} className="card">
                   <img
@@ -102,10 +101,21 @@ export default function RecipeContainer() {
           </div>
         </div>
       );
+    } else if (data.error && state === "active") {
+      return (
+        <div className="error-container">
+          <p className="error-msg">{data.error}</p>
+          <img
+            src={process.env.PUBLIC_URL + "/img/error-img.png"}
+            alt=""
+            className="error-img"
+          />
+        </div>
+      );
     } else {
       return (
         <div className="loader">
-          <SyncLoader color="#48bf84" />;
+          <SyncLoader color="#48bf84" />
         </div>
       );
     }
