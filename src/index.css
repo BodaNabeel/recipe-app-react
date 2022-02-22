@@ -1,4 +1,4 @@
-/* color varaibles */
+/* color variables */
 :root {
   --light-green: #48bf84;
   --light-grey: #5a7668;
@@ -96,9 +96,7 @@ body {
   overflow: hidden;
 
   margin: 0 5vw;
-  /* margin-top: -50px; */
-
-  /* display: none; */
+  margin-top: -15px;
 }
 .search-bar {
   background-color: var(--light-green);
@@ -148,11 +146,14 @@ body {
   display: flex;
   flex-direction: column;
   height: 100%;
-  margin: 0 5vw;
+  /* margin: 0 5vw; */
 }
 .card-wrap-heading {
   text-align: center;
-  color: var(--light-green)
+  color: var(--light-green);
+  font-size: 24px;
+  font-weight: 700;
+  margin:0;
 }
 
 .card-container {
@@ -183,6 +184,9 @@ body {
   height: 100%;
   cursor: pointer;
   margin-right: 12px;
+}
+.card:nth-child(last) {
+  margin-right: 0px;
 }
 .card-img {
   height: 65%;
