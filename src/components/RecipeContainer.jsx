@@ -12,6 +12,7 @@ export default function RecipeContainer() {
   // key: 36cdcc1e-f278-45a8-a77a-6af5bd74bf2e
   // id: 5ed6604591c37cdc054bcd09
   // sample  https://forkify-api.herokuapp.com/api/v2/recipes/search=pizza&key=36cdcc1e-f278-45a8-a77a-6af5bd74bf2e
+  const defaultValue__ = 0;
   const params = useParams();
   const dishName = params.id;
   const API_URL = "https://forkify-api.herokuapp.com/api/search?q=";
@@ -39,6 +40,11 @@ export default function RecipeContainer() {
       .then((data) => setRecipeData(data));
   }, [dishName]);
 
+  // changing scroll value to default i.e 0 on every new search
+  useEffect(() => {
+    setScrollX(0);
+  }, [dishName]);
+
   // setting a timer to show a loading animation for 5secs
   useEffect(() => {
     const timer = setInterval(() => {
@@ -52,6 +58,7 @@ export default function RecipeContainer() {
     if (data.recipes && state === "active") {
       return (
         <div className="card-wrap">
+          <h1 className="card-wrap-heading">select a dish</h1>
           <div className="card-container" onScroll={scrollCheck} ref={ref}>
             {data.recipes.map((el) => {
               return (
