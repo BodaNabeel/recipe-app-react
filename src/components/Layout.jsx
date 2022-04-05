@@ -16,6 +16,7 @@ function Layout({ children }) {
       if (e.key === "Enter") {
         navigate(`search/${inputField.current.value}`);
         inputField.current.value = "";
+        inputField.current.blur()
       }
     });
   }, []);
