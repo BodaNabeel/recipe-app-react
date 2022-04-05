@@ -51,10 +51,10 @@ export default function RecipeDetail() {
           <h1 className="recipe-name">{data.title}</h1>
 
           <div className="recipe-ingredients">
-            <p className="recipe-ingredients__heading">Recipe Ingredients</p>
+            <p className="recipe-ingredients__heading">Recipe Ingredients:</p>
             <div className="ingredient-list">
-              {data.ingredients.map((el) => {
-               return <p key={uuidv4()} className="ingredient">{el}</p>;
+              {data.ingredients.map((el,index) => {
+               return <p key={uuidv4()} className="ingredient">{`${index+1}) ${el}`}</p>;
               })}
             </div>
           </div>
