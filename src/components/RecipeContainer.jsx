@@ -1,17 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams,useNavigate } from "react-router-dom";
+
 import { v4 as uuidv4 } from "uuid";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { MdKeyboardArrowLeft } from "react-icons/md";
 import { GiChefToque } from "react-icons/gi";
 import SyncLoader from "react-spinners/SyncLoader";
 export default function RecipeContainer() {
-  //   API URL: https://forkify-api.herokuapp.com/api/v2/recipes/
-  // search by name: AJAX(`${API_URL}?search=${query}&key=${KEY}`);
-  // search by ID: AJAX(`${API_URL}${id}?key=${KEY}`);
-  // key: 36cdcc1e-f278-45a8-a77a-6af5bd74bf2e
-  // id: 5ed6604591c37cdc054bcd09
-  // sample  https://forkify-api.herokuapp.com/api/v2/recipes/search=pizza&key=36cdcc1e-f278-45a8-a77a-6af5bd74bf2e
+ 
   const params = useParams();
   const dishName = params.id;
   const API_URL = "https://forkify-api.herokuapp.com/api/search?q=";
@@ -21,9 +17,9 @@ export default function RecipeContainer() {
   const [scrollWidthX, setScrollWidthX] = useState();
 
   const ref = useRef();
+  const navigate = useNavigate();
 
   const scroll = (scrollOffset) => {
-    console.log(scrollX)
     ref.current.scrollLeft += scrollOffset;
     setScrollWidthX(ref.current.scrollWidth - ref.current.offsetWidth);
     setScrollX(Math.ceil(ref.current.scrollLeft));
@@ -62,7 +58,7 @@ export default function RecipeContainer() {
           <div className="card-container" onScroll={scrollCheck} ref={ref}>
             {data.recipes.map((el) => {
               return (
-                <div key={uuidv4()} className="card">
+                <div key={uuidv4()} onClick={ () => {navigate(`id=${el.recipe_id}`, {state: el.recipe_id})}} className="card">
                   <img
                     src={el.image_url}
                     alt={`img of ${el.title}`}
