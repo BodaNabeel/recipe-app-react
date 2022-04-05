@@ -264,14 +264,28 @@ body {
 .detail-container {
   background-color: red;
   width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
+  align-items: center;
 }
-.detail-container__img {
-height: 10%;
-border-radius: 10px;
+.detail-container__img,
+.detail-container__content {
+  width: 50%;
+}
+.dish-info__container {
+  display: flex;
+  gap: 10px
 }
 .ingredient-list {
   display: grid;
-  grid-template-columns: repeat(2, minmax(150px,0.3fr));
+  grid-template-columns: repeat(2, minmax(150px, 0.3fr));
   grid-template-rows: repeat(6, min-content);
 }
-
+@media only screen and (max-width: 540px) {
+  .detail-container__img,
+  .detail-container__content {
+    width: 80%;
+  }
+}
