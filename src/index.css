@@ -95,8 +95,6 @@ body {
 }
 .content-main {
   grid-area: content-main;
-  /* overflow: hidden; */
-
   margin: 0 5vw;
   margin-top: -15px;
 }
@@ -139,7 +137,7 @@ body {
   height: 40px;
   width: max-content;
   padding: 0 10px;
-
+  cursor: pointer;
   box-sizing: content-box;
 }
 
@@ -205,13 +203,11 @@ body {
 .cook-detail {
   background-color: #a584ec;
   color: var(--white);
-  /* display: inline; */
   width: max-content;
   padding: 5px;
   border-radius: 10px;
   display: flex;
   align-items: center;
-  /* justify-content: center; */
 }
 .cook-icon {
   margin-right: 10px;
@@ -226,7 +222,6 @@ body {
 }
 .scroll-btn {
   border: none;
-  /* background-color: var(--light-green); */
   margin: 5px;
 
   padding: 12px;
@@ -275,21 +270,40 @@ body {
   justify-self: center;
   align-items: center;
 }
-.detail-container__img,
+.detail-top,
 .detail-container__content {
   width: 50%;
+}
+.bookmark-icon {
+  position: absolute;
+  color: white;
+  right: 23%;
+  margin-top: 4px;
+  cursor: pointer;
+  font-size: 25px;
+  transition: 0.1s opacity cubic-bezier(.36,.39,1,.2);
+}
+.bookmark-icon_passive {
+  opacity: 0.5;
+}
+.bookmark-icon_active {
+  opacity: 1;
 }
 .detail-container__img {
   border-radius: 10px;
   margin-bottom: 15px;
+  width: 100%;
 }
 .dish-info__container {
   display: flex;
   gap: 10px
 }
 @media only screen and (max-width: 540px) {
-  .detail-container__img,
+  .detail-top,
   .detail-container__content {
     width: 80%;
+  }
+  .bookmark-icon {
+    right: 12%
   }
 }

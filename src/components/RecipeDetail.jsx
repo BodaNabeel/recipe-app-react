@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { GiChefToque } from "react-icons/gi";
 import SyncLoader from "react-spinners/SyncLoader";
+import { BsBookmarkFill } from "react-icons/bs";
 import { v4 as uuidv4 } from "uuid";
 
 export default function RecipeDetail() {
@@ -10,6 +11,12 @@ export default function RecipeDetail() {
   const API_URL = "https://forkify-api.herokuapp.com/api/get?rId=";
 
   const [detailedRecipe, setDetailedRecipe] = useState("");
+  const [isActive, setIsActive] = useState(false)
+
+  // toggling isActive
+  const toggleClass = () => {
+    setIsActive(!isActive)
+  }
 
   // fetching API w.r.t ID
   useEffect(() => {
@@ -23,11 +30,14 @@ export default function RecipeDetail() {
   const displayUI = (data) => {
     return (
       <div className="detail-container">
-        <img
-          src={data.image_url}
-          alt={`img of ${data.title}`}
-          className="detail-container__img"
-        />
+        <div className="detail-top">
+          <BsBookmarkFill onClick={toggleClass} className={isActive ? "bookmark-icon bookmark-icon_active" : "bookmark-icon bookmark-icon_passive"} />
+          <img
+            src={data.image_url}
+            alt={`img of ${data.title}`}
+            className="detail-container__img"
+          />
+        </div>
         <div className="detail-container__content">
           <div className="content-top">
             <div className="cook-detail">
