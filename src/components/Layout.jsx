@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { BiSearchAlt } from "react-icons/bi";
 import { BsBookmarkFill } from "react-icons/bs";
+
 function Layout({ children }) {
   let navigate = useNavigate();
   const inputField = useRef();
@@ -101,7 +102,7 @@ function Layout({ children }) {
                 className="search-bar_inputField"
               />
             </div>
-            <div className="bookmark-bar">
+            <div onClick={ () => {navigate("bookmark")}} className="bookmark-bar">
               <span className="bookmark-bar_text">Bookmarks</span>
               <BsBookmarkFill />
             </div>
