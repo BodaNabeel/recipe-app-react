@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { GiChefToque } from "react-icons/gi";
 import SyncLoader from "react-spinners/SyncLoader";
+import { v4 as uuidv4 } from "uuid";
 
 export default function RecipeDetail() {
   const location = useLocation();
@@ -36,13 +37,13 @@ export default function RecipeDetail() {
               <p className="cook-name">{data.publisher}</p>
             </div>
             <div className="dish-info">
-              <div className="recipe-id">
-                <p className="recipe-id__text">Recipe Id</p>
+              <div className="recipe-id dish-info__container">
+                <p className="recipe-id__text">Recipe Id:</p>
                 <p className="recipe-id__text">{data.recipe_id}</p>
               </div>
-              <div className="recipe-rank">
-                <p className="recipe-rank__text">Recipe Rank</p>
-                <p className="recipe-rank__text">{data.social_rank}</p>
+              <div className="recipe-rank dish-info__container">
+                <p className="recipe-rank__text">Recipe Rank:</p>
+                <p className="recipe-rank__text">{Math.round(data.social_rank)}</p>
               </div>
             </div>
           </div>
@@ -53,7 +54,7 @@ export default function RecipeDetail() {
             <p className="recipe-ingredients__heading">Recipe Ingredients</p>
             <div className="ingredient-list">
               {data.ingredients.map((el) => {
-               return <p className="ingredient">{el}</p>;
+               return <p key={uuidv4()} className="ingredient">{el}</p>;
               })}
             </div>
           </div>
