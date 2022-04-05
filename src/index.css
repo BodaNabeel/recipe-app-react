@@ -9,6 +9,10 @@ body {
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   margin: 0;
 }
+/* making tapping on buttons on browser transparent */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
 /* LAYOUT */
 .layout {
   height: 100vh;
@@ -258,6 +262,9 @@ body {
 .error-msg {
   text-align: center;
   font-weight: 700;
+}
+.error-img {
+  width: 80%;
 }
 /* detailed recipe */
 .detail-container {
