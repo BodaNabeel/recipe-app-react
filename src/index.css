@@ -9,7 +9,6 @@ body {
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   margin: 0;
 }
-
 /* LAYOUT */
 .layout {
   height: 100vh;
@@ -262,7 +261,6 @@ body {
 }
 /* detailed recipe */
 .detail-container {
-  background-color: red;
   width: 100%;
 
   display: flex;
@@ -274,14 +272,13 @@ body {
 .detail-container__content {
   width: 50%;
 }
+.detail-container__img {
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
 .dish-info__container {
   display: flex;
   gap: 10px
-}
-.ingredient-list {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(150px, 0.3fr));
-  grid-template-rows: repeat(6, min-content);
 }
 @media only screen and (max-width: 540px) {
   .detail-container__img,
