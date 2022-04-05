@@ -11,12 +11,12 @@ export default function RecipeDetail() {
   const API_URL = "https://forkify-api.herokuapp.com/api/get?rId=";
 
   const [detailedRecipe, setDetailedRecipe] = useState("");
-  const [isActive, setIsActive] = useState(false)
+  const [isActive, setIsActive] = useState(false);
 
   // toggling isActive
   const toggleClass = () => {
-    setIsActive(!isActive)
-  }
+    setIsActive(!isActive);
+  };
 
   // fetching API w.r.t ID
   useEffect(() => {
@@ -31,7 +31,14 @@ export default function RecipeDetail() {
     return (
       <div className="detail-container">
         <div className="detail-top">
-          <BsBookmarkFill onClick={toggleClass} className={isActive ? "bookmark-icon bookmark-icon_active" : "bookmark-icon bookmark-icon_passive"} />
+          <BsBookmarkFill
+            onClick={toggleClass}
+            className={
+              isActive
+                ? "bookmark-icon bookmark-icon_active"
+                : "bookmark-icon bookmark-icon_passive"
+            }
+          />
           <img
             src={data.image_url}
             alt={`img of ${data.title}`}
@@ -53,7 +60,9 @@ export default function RecipeDetail() {
               </div>
               <div className="recipe-rank dish-info__container">
                 <p className="recipe-rank__text">Recipe Rank:</p>
-                <p className="recipe-rank__text">{Math.round(data.social_rank)}</p>
+                <p className="recipe-rank__text">
+                  {Math.round(data.social_rank)}
+                </p>
               </div>
             </div>
           </div>
@@ -63,8 +72,12 @@ export default function RecipeDetail() {
           <div className="recipe-ingredients">
             <p className="recipe-ingredients__heading">Recipe Ingredients:</p>
             <div className="ingredient-list">
-              {data.ingredients.map((el,index) => {
-               return <p key={uuidv4()} className="ingredient">{`${index+1}) ${el}`}</p>;
+              {data.ingredients.map((el, index) => {
+                return (
+                  <p key={uuidv4()} className="ingredient">{`${
+                    index + 1
+                  }) ${el}`}</p>
+                );
               })}
             </div>
           </div>
