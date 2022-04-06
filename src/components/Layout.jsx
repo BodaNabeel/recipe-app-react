@@ -102,7 +102,7 @@ function Layout({ children }) {
                 className="search-bar_inputField"
               />
             </div>
-            <div onClick={ () => {navigate("bookmark")}} className="bookmark-bar">
+            <div onClick={ () => {navigate("/bookmark")}} className="bookmark-bar">
               <span className="bookmark-bar_text">Bookmarks</span>
               <BsBookmarkFill />
             </div>
