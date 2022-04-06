@@ -5,8 +5,8 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Layout from "./components/Layout";
 import "normalize.css";
 import RecipeContainer from "./components/RecipeContainer";
-import RecipeDetail from "./components/RecipeDetail";
-import Bookmark from "./components/Bookmark";
+// import RecipeDetail from "./components/RecipeDetail";
+// import Bookmark from "./components/Bookmark";
 import DataAPI from "./components/DataAPI";
 
 ReactDOM.render(
