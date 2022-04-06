@@ -5,7 +5,7 @@ import SyncLoader from "react-spinners/SyncLoader";
 import { BsBookmarkFill } from "react-icons/bs";
 import { v4 as uuidv4 } from "uuid";
 
-export default function RecipeDetail({setRecipeData}) {
+export default function RecipeDetail({ setRecipeData }) {
   const location = useLocation();
   const id = location.state;
   const API_URL = "https://forkify-api.herokuapp.com/api/get?rId=";
@@ -24,13 +24,17 @@ export default function RecipeDetail({setRecipeData}) {
       .then((res) => res.json())
       .then((data) => setDetailedRecipe(data.recipe));
 
-      
     //   .then((data) => console.log(data.recipe.image_url));
   }, [id]);
+
+  // saving deteiled recipes to the global recipeData
   useEffect(() => {
-    setRecipeData(detailedRecipe)
-  }, [detailedRecipe])
-  
+    if (detailedRecipe !== "") {
+      setRecipeData((prevState) => {
+        return [...prevState, detailedRecipe];
+      });
+    }
+  }, [detailedRecipe]);
 
   // displaying detailed recipe function
   const displayUI = (data) => {
