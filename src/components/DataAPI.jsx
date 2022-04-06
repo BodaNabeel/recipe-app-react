@@ -5,7 +5,7 @@ import Bookmark from "./Bookmark";
 import RecipeDetail from "./RecipeDetail";
 
 function DataAPI() {
-  const [recipeData, setRecipeData] = useState();
+  const [recipeData, setRecipeData] = useState([]);
 
 
   return (
