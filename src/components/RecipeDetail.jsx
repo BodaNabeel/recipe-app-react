@@ -5,7 +5,7 @@ import SyncLoader from "react-spinners/SyncLoader";
 import { BsBookmarkFill } from "react-icons/bs";
 import { v4 as uuidv4 } from "uuid";
 
-export default function RecipeDetail({ setRecipeData}) {
+export default function RecipeDetail({ setRecipeData, recipeData }) {
   const location = useLocation();
   const id = location.state;
   const API_URL = "https://forkify-api.herokuapp.com/api/get?rId=";
@@ -29,10 +29,21 @@ export default function RecipeDetail({ setRecipeData}) {
 
   // saving deteiled recipes to the global recipeData
   useEffect(() => {
-    if (detailedRecipe !== "") {
+    // storing all the recipe_ids in an array
+    let recipe_ids = [];
+    recipeData.forEach((element) => {
+      recipe_ids.push(element.recipe_id);
+    });
+
+    // using if statement to check if the same recipe has been stored before, if yes then preventing it from getting stored again
+    if (
+      detailedRecipe !== "" &&
+      !recipe_ids.includes(detailedRecipe.recipe_id)
+    ) {
       setRecipeData((prevState) => {
         return [...prevState, detailedRecipe];
       });
+      // console.log(recipe_ids);
     }
   }, [detailedRecipe]);
 
