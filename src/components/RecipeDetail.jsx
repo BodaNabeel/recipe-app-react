@@ -29,6 +29,16 @@ export default function RecipeDetail({ setRecipeData, recipeData }) {
       setRecipeData((prevState) => {
         return [...prevState, detailedRecipe];
       });
+    } 
+    // removing item from bookmark
+    else if (recipe_ids.includes(detailedRecipe.recipe_id)) {
+      recipe_ids.forEach((el) => {
+        const updatedList = recipeData.filter(
+          (value) => value.recipe_id !== el
+        );
+        console.log(updatedList);
+        setRecipeData(updatedList);
+      });
     }
   };
 
