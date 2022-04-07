@@ -13,21 +13,9 @@ export default function RecipeDetail({ setRecipeData, recipeData }) {
   const [detailedRecipe, setDetailedRecipe] = useState("");
   const [isActive, setIsActive] = useState(false);
 
-  // toggling isActive
-  const toggleClass = () => {
+  // toggling bookmark
+  const toggleBookmark = () => {
     setIsActive(!isActive);
-  };
-
-  // fetching API w.r.t ID
-  useEffect(() => {
-    fetch(`${API_URL}${id}`)
-      .then((res) => res.json())
-      .then((data) => setDetailedRecipe(data.recipe));
-  }, [id]);
-
-  // saving deteiled recipes to the global recipeData
-  useEffect(() => {
-    // storing all the recipe_ids in an array
     let recipe_ids = [];
     recipeData.forEach((element) => {
       recipe_ids.push(element.recipe_id);
@@ -42,7 +30,14 @@ export default function RecipeDetail({ setRecipeData, recipeData }) {
         return [...prevState, detailedRecipe];
       });
     }
-  }, [detailedRecipe]);
+  };
+
+  // fetching API w.r.t ID
+  useEffect(() => {
+    fetch(`${API_URL}${id}`)
+      .then((res) => res.json())
+      .then((data) => setDetailedRecipe(data.recipe));
+  }, [id]);
 
   // displaying detailed recipe function
   const displayUI = (data) => {
@@ -50,7 +45,7 @@ export default function RecipeDetail({ setRecipeData, recipeData }) {
       <div className="detail-container">
         <div className="detail-top">
           <BsBookmarkFill
-            onClick={toggleClass}
+            onClick={toggleBookmark}
             className={
               isActive
                 ? "bookmark-icon bookmark-icon_active"
