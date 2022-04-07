@@ -23,8 +23,6 @@ export default function RecipeDetail({ setRecipeData, recipeData }) {
     fetch(`${API_URL}${id}`)
       .then((res) => res.json())
       .then((data) => setDetailedRecipe(data.recipe));
-
-    //   .then((data) => console.log(data.recipe.image_url));
   }, [id]);
 
   // saving deteiled recipes to the global recipeData
@@ -35,7 +33,7 @@ export default function RecipeDetail({ setRecipeData, recipeData }) {
       recipe_ids.push(element.recipe_id);
     });
 
-    // using if statement to check if the same recipe has been stored before, if yes then preventing it from getting stored again
+    // prevetning a recipe to be stored more than once
     if (
       detailedRecipe !== "" &&
       !recipe_ids.includes(detailedRecipe.recipe_id)
@@ -43,7 +41,6 @@ export default function RecipeDetail({ setRecipeData, recipeData }) {
       setRecipeData((prevState) => {
         return [...prevState, detailedRecipe];
       });
-      // console.log(recipe_ids);
     }
   }, [detailedRecipe]);
 
