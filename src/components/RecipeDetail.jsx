@@ -5,7 +5,7 @@ import SyncLoader from "react-spinners/SyncLoader";
 import { BsBookmarkFill } from "react-icons/bs";
 import { v4 as uuidv4 } from "uuid";
 
-export default function RecipeDetail({ setRecipeData }) {
+export default function RecipeDetail({ setRecipeData}) {
   const location = useLocation();
   const id = location.state;
   const API_URL = "https://forkify-api.herokuapp.com/api/get?rId=";
