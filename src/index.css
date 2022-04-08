@@ -311,6 +311,7 @@ body {
 /* bookmard tab */
 .bookmark-container {
   display: flex;
+  /* flex-wrap: wrap; */
   gap: 20px;
   border-radius: 15px;
 }
@@ -336,4 +337,12 @@ body {
   padding: 5px;
   text-align: center;
   margin: 0 auto;
+}
+@media only screen and (max-width:540px) {
+  .bookmark-container {
+    flex-direction: column
+  }
+  .bookmark-card{
+    width: 70%;
+  }
 }
