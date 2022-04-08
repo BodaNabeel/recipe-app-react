@@ -276,12 +276,12 @@ body {
 }
 .bookmark-icon {
   position: absolute;
-  
+
   right: 23%;
   margin-top: 4px;
   cursor: pointer;
   font-size: 25px;
-  transition: 0.1s opacity cubic-bezier(.36,.39,1,.2);
+  transition: 0.1s opacity cubic-bezier(0.36, 0.39, 1, 0.2);
 }
 .bookmark-icon_passive {
   color: white;
@@ -296,7 +296,7 @@ body {
 }
 .dish-info__container {
   display: flex;
-  gap: 10px
+  gap: 10px;
 }
 @media only screen and (max-width: 540px) {
   .detail-top,
@@ -304,6 +304,36 @@ body {
     width: 80%;
   }
   .bookmark-icon {
-    right: 12%
+    right: 12%;
   }
+}
+
+/* bookmard tab */
+.bookmark-container {
+  display: flex;
+  gap: 20px;
+  border-radius: 15px;
+}
+.bookmark-card {
+  width: 50%;
+  border-radius: 15px;
+  box-shadow: 0px 10px 1px #ddd, 0 10px 20px #ccc;
+  overflow: hidden;
+}
+.bookmark-img {
+  width: 100%;
+  height: 250px;
+}
+.bookmark-content {
+  text-align: center;
+}
+.bookmark-recipeName {
+  font-size: 14px;
+}
+.bookmark-publisher {
+  background-color: #a584ec;
+  color: var(--white);
+  padding: 5px;
+  text-align: center;
+  margin: 0 auto;
 }
