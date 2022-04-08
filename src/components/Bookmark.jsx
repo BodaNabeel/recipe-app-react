@@ -9,9 +9,9 @@ export default function Bookmark({ bookmarks }) {
           {data.map((element) => {
             return (
               <div key={uuidv4()} className="bookmark-card">
-                <div className="bookmark-img"></div>
+                <img src={element.image_url} alt="" className="bookmark-img" />
                 <div className="bookmark-content">
-                  <h1 className="bookmark-recipeName">{element.title}</h1>
+                  <h1 className="bookmark-recipeName ">{element.title}</h1>
                   <p className="bookmark-publisher">{element.publisher}</p>
                 </div>
               </div>
