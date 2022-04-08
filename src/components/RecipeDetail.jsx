@@ -16,11 +16,14 @@ export default function RecipeDetail({
   const API_URL = "https://forkify-api.herokuapp.com/api/get?rId=";
 
   const [detailedRecipe, setDetailedRecipe] = useState("");
-  const [isActive, setIsActive] = useState(false);
 
   // toggling bookmark
   const toggleBookmark = () => {
     const recipe_ids = [];
+    const bookmark_ids = [];
+    bookmarkIDs.forEach((element) => {
+      bookmark_ids.push(element)
+    })
     recipeData.forEach((element) => {
       recipe_ids.push(element.recipe_id);
     });
@@ -29,7 +32,6 @@ export default function RecipeDetail({
       detailedRecipe !== "" &&
       !recipe_ids.includes(detailedRecipe.recipe_id)
     ) {
-      setIsActive(true);
       setRecipeData((prevState) => {
         return [...prevState, detailedRecipe];
       });
@@ -49,9 +51,10 @@ export default function RecipeDetail({
       });
 
       bookmarkIDs.forEach((el) => {
-        const updatedBookmark = recipeData.filter(
-          (value) => value.recipe_id !== el
+        const updatedBookmark = bookmark_ids.filter(
+          (value) => value === el
         );
+        console.log(updatedBookmark)
         setBookmarkIDs(updatedBookmark);
       });
     }
