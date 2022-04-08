@@ -44,7 +44,7 @@ export default function RecipeDetail({
       // setIsActive(false);
       recipe_ids.forEach((el) => {
         const updatedList = recipeData.filter(
-          (value) => value.recipe_id !== el
+          (value) => value.recipe_id === el
         );
         console.log(updatedList);
         setRecipeData(updatedList);
