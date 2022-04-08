@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useParams,useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 import { v4 as uuidv4 } from "uuid";
 import { MdKeyboardArrowRight } from "react-icons/md";
@@ -8,7 +8,6 @@ import { GiChefToque } from "react-icons/gi";
 import SyncLoader from "react-spinners/SyncLoader";
 
 export default function RecipeContainer() {
- 
   const params = useParams();
   const dishName = params.id;
   const API_URL = "https://forkify-api.herokuapp.com/api/search?q=";
@@ -59,7 +58,13 @@ export default function RecipeContainer() {
           <div className="card-container" onScroll={scrollCheck} ref={ref}>
             {data.recipes.map((el) => {
               return (
-                <div key={uuidv4()} onClick={ () => {navigate(`id=${el.recipe_id}`, {state: el.recipe_id})}} className="card">
+                <div
+                  key={uuidv4()}
+                  onClick={() => {
+                    navigate(`id=${el.recipe_id}`, { state: el.recipe_id });
+                  }}
+                  className="card"
+                >
                   <img
                     src={el.image_url}
                     alt={`img of ${el.title}`}
